@@ -1,22 +1,24 @@
-name: Mirror to Org Repo
+name: Push to Org Sub-Folder
 
 on:
   push:
-    branches: [ "master" ]  # ⚠️ 본인 브랜치가 master면 main을 master로 바꾸세요!
+    branches: [ master ]  # 본인 브랜치 이름 확인 (master면 수정)
 
 jobs:
-  to-org:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout My Code
+        uses: actions/checkout@v3
+
+      - name: Push to Specific Folder
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.TARGET_TOKEN }} # 아까 등록한 토큰 이름 (수정 X)
         with:
-          fetch-depth: 0
-      
-      - name: Push to Org Repo
-        run: |
-          # 아래 주소 형식: https://github.com/조직이름/타겟레포이름.git
-          # 예: https://github.com/MyCompany/backend-server.git
-          git remote add target https://minseo:${{ secrets.TARGET_TOKEN }}@github.com/여기에_조직_레포_주소를_넣으세요.git
-          
-          # 강제로 덮어쓰기 (Mirroring)
-          git push -f target main
+          source-directory: '.'                       # 내 레포의 모든 파일을
+          destination-github-username: '조직이름'       # 1. Organization 이름 (예: SSAFY-15)
+          destination-repository-name: '타겟레포이름'   # 2. Org의 레포 이름 (예: final-project)
+          user-email: '본인이메일@gmail.com'           # 3. 커밋 기록에 남길 이메일
+          target-branch: 'main'                       # 4. Org 레포의 브랜치 (보통 main)
+          target-directory: '내이름_폴더'              # 5. ⭐ 여기가 핵심! 파일을 넣을 폴더 경로
