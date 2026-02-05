@@ -17,8 +17,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.TARGET_TOKEN }} # 아까 등록한 토큰 이름 (수정 X)
         with:
           source-directory: '.'                       # 내 레포의 모든 파일을
-          destination-github-username: '조직이름'       # 1. Organization 이름 (예: SSAFY-15)
-          destination-repository-name: '타겟레포이름'   # 2. Org의 레포 이름 (예: final-project)
-          user-email: '본인이메일@gmail.com'           # 3. 커밋 기록에 남길 이메일
+          destination-github-username: 'Algorithm-for-SSAFY'       # 1. Organization 이름 (예: SSAFY-15)
+          destination-repository-name: 'The-way-to-Type-B '   # 2. Org의 레포 이름 (예: final-project)
+          user-email: 'msc503@naver.com'           # 3. 커밋 기록에 남길 이메일
           target-branch: 'main'                       # 4. Org 레포의 브랜치 (보통 main)
-          target-directory: '내이름_폴더'              # 5. ⭐ 여기가 핵심! 파일을 넣을 폴더 경로
+          target-directory: 'Code-Tree'              # 5. ⭐ 여기가 핵심! 파일을 넣을 폴더 경로
