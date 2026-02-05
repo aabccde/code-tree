@@ -2,7 +2,7 @@ name: Push to Org Sub-Folder
 
 on:
   push:
-    branches: [ master ]  # 본인 브랜치 이름 확인 (master면 수정)
+    branches: [ main ]  # 본인 브랜치 이름 확인 (master면 수정)
 
 jobs:
   build:
