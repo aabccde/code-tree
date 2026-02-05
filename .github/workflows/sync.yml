@@ -1,0 +1,22 @@
+name: Mirror to Org Repo
+
+on:
+  push:
+    branches: [ "master" ]  # ⚠️ 본인 브랜치가 master면 main을 master로 바꾸세요!
+
+jobs:
+  to-org:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Push to Org Repo
+        run: |
+          # 아래 주소 형식: https://github.com/조직이름/타겟레포이름.git
+          # 예: https://github.com/MyCompany/backend-server.git
+          git remote add target https://minseo:${{ secrets.TARGET_TOKEN }}@github.com/여기에_조직_레포_주소를_넣으세요.git
+          
+          # 강제로 덮어쓰기 (Mirroring)
+          git push -f target main
